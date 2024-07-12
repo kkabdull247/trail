@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Hub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f0f0f0;
+            padding-top: 130px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .close {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .validation-label {
+            display: none;
+            color: red;
+            font-size: 14px;
+            margin-top: -8px;
+            margin-bottom: 10px;
+        }
+
+        .validation-label.valid {
+            color: green;
+            display: block;
+        }
+
+        .validation-label.invalid {
+            display: block;
+        }
+
+        .profile-picture {
+            display: block;
+            margin-bottom: 10px;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="sub-header">
+            <div class="contact-info">
+                <p>Email: careers@serviceshub.com</p>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="header">
+            <a href="index.html" style="text-decoration: none; color: black; font-weight: bolder; font-style: italic;">
+                <div class="logo">Services Hub</div>
+            </a>
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <div class="icons">
+                <a href="#" onclick="showCart()"><i class="fa fa-shopping-cart"></i></a>
+                <span class="cart-count">0</span>
+                <a href="login.html"><i class="fa fa-user"></i></a>
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+        </div>
+
+        <div id="addToCartModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('addToCartModal')">&times;</span>
+                <p>Item added to cart!</p>
+            </div>
+        </div>
+
+        <div id="cartModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('cartModal')">&times;</span>
+                <h2>Cart Items</h2>
+                <ul id="cartItems" class="cart-items"></ul>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Job Application Form</h2>
+        <form id="jobApplicationForm">
+            <label for="profilePicture">Profile Picture:</label>
+            <input type="file" id="profilePicture" name="profilePicture" accept="image/*" required>
+            <img id="profilePreview" class="profile-picture" src="#" alt="Profile Picture Preview" style="display: none;">
+
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" required>
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+            <span id="phoneValidation" class="validation-label">Please enter a valid phone number (10 digits).</span>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+            <span id="emailValidation" class="validation-label">Please enter a valid email address.</span>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="position">Position Applying for:</label>
+            <input type="text" id="position" name="position" required>
+
+            <label for="salary">Expected Salary:</label>
+            <input type="text" id="salary" name="salary">
+
+            <label for="employmentType">Desired Employment Type:</label>
+            <select id="employmentType" name="employmentType">
+                <option value="fullTime">Full-time</option>
+                <option value="partTime">Part-time</option>
+                <option value="temporary">Temporary</option>
+                <option value="internship">Internship</option>
+            </select>
+
+            <label for="education">Highest Education Level:</label>
+            <textarea id="education" name="education" rows="4" required></textarea>
+
+            <label for="experience">Work Experience:</label>
+            <textarea id="experience" name="experience" rows="4" required></textarea>
+
+            <label for="references">References:</label>
+            <textarea id="references" name="references" rows="4"></textarea>
+
+            <label for="legal">Legally Authorized to Work:</label>
+            <input type="checkbox" id="legal" name="legal" required>
+            <span>Yes, I am legally authorized to work in this country.</span>
+
+            <label for="felony">Convicted of a Felony:</label>
+            <input type="checkbox" id="felony" name="felony">
+            <span>If yes, please explain:</span>
+            <textarea id="felonyExplanation" name="felonyExplanation" rows="2"></textarea>
+
+            <button type="submit" class="btn">Submit Application</button>
+        </form>
+    </div>
+
+    <div id="reviewModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('reviewModal')">&times;</span>
+            <h2>Review Your Application</h2>
+            <div id="reviewDetails"></div>
+            <button class="btn" onclick="finalSubmit()">Confirm and Submit</button>
+        </div>
+    </div>
+
+    <div id="jobAppliedModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('jobAppliedModal')">&times;</span>
+            <h2>Application Submitted</h2>
+            <p>Your application has been submitted successfully!</p>
+            <img src="success-image.png" alt="Success" style="width: 100px;">
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#phone').on('input', validatePhone);
+            $('#email').on('input', validateEmail);
+            $('#profilePicture').on('change', previewProfilePicture);
+
+            $('#jobApplicationForm').on('submit', function (e) {
+                e.preventDefault();
+                if (validateForm()) {
+                    showModal('reviewModal');
+                    displayFormDetails();
+                }
+            });
+
+            function validatePhone() {
+                const phoneRegex = /^[0-9]{10}$/;
+                const phone = $('#phone').val();
+                if (phoneRegex.test(phone)) {
+                    $('#phoneValidation').removeClass('invalid').addClass('valid').text('Phone number is valid.');
+                } else {
+                    $('#phoneValidation').removeClass('valid').addClass('invalid').text('Please enter a valid phone number (10 digits).');
+                }
+            }
+
+            function validateEmail() {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,6}$/;
+                const email = $('#email').val();
+                if (emailRegex.test(email)) {
+                    $('#emailValidation').removeClass('invalid').addClass('valid').text('Email address is valid.');
+                } else {
+                    $('#emailValidation').removeClass('valid').addClass('invalid').text('Please enter a valid email address.');
+                }
+            }
+
+            function validateForm() {
+                const phoneRegex = /^[0-9]{10}$/;
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,6}$/;
+                const phone = $('#phone').val();
+                const email = $('#email').val();
+
+                if (!phoneRegex.test(phone)) {
+                    $('#phoneValidation').removeClass('valid').addClass('invalid').text('Please enter a valid phone number (10 digits).');
+                    return false;
+                }
+
+                if (!emailRegex.test(email)) {
+                    $('#emailValidation').removeClass('valid').addClass('invalid').text('Please enter a valid email address.');
+                    return false;
+                }
+
+                return true;
+            }
+
+            function previewProfilePicture() {
+                const file = document.getElementById('profilePicture').files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#profilePreview').attr('src', e.target.result).show();
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+
+            function displayFormDetails() {
+                const profilePicture = document.getElementById('profilePreview').src;
+                const formDetails = `
+                    <img src="${profilePicture}" class="profile-picture" alt="Profile Picture">
+                    <p><strong>Full Name:</strong> ${$('#fullName').val()}</p>
+                    <p><strong>Address:</strong> ${$('#address').val()}</p>
+                    <p><strong>Phone Number:</strong> ${$('#phone').val()}</p>
+                    <p><strong>Email Address:</strong> ${$('#email').val()}</p>
+                    <p><strong>Date of Birth:</strong> ${$('#dob').val()}</p>
+                    <p><strong>Position Applying for:</strong> ${$('#position').val()}</p>
+                    <p><strong>Expected Salary:</strong> ${$('#salary').val()}</p>
+                    <p><strong>Desired Employment Type:</strong> ${$('#employmentType').val()}</p>
+                    <p><strong>Highest Education Level:</strong> ${$('#education').val()}</p>
+                    <p><strong>Work Experience:</strong> ${$('#experience').val()}</p>
+                    <p><strong>References:</strong> ${$('#references').val()}</p>
+                    <p><strong>Legally Authorized to Work:</strong> ${$('#legal').is(':checked') ? 'Yes' : 'No'}</p>
+                    <p><strong>Convicted of a Felony:</strong> ${$('#felony').is(':checked') ? 'Yes' : 'No'}</p>
+                    ${$('#felony').is(':checked') ? `<p><strong>Felony Explanation:</strong> ${$('#felonyExplanation').val()}</p>` : ''}
+                `;
+                $('#reviewDetails').html(formDetails);
+            }
+
+            window.showModal = function (modalId) {
+                $('#' + modalId).css('display', 'block');
+            }
+
+            window.closeModal = function (modalId) {
+                $('#' + modalId).css('display', 'none');
+            }
+
+            window.finalSubmit = function () {
+                $('#jobApplicationForm').trigger('reset'); // Reset the form
+                closeModal('reviewModal');
+                showModal('jobAppliedModal');
+            }
+        });
+    </script>
+</body>
+
+</html>

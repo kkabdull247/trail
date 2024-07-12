@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Hub</title>
+
+</head>
+
+<body>
+  <!-- advertisement code -->
+  <!-- <div id="bodyy">
+    <div class="containerr" id="advertisement">
+      <div class="close-icon" id="closeAd"><i class="fas fa-times"></i></div>
+      <div class="headerr">
+        <h1>AZ-FIT</h1>
+        <p>Deals and Discounts</p>
+      </div>
+
+      <div class="advertisement">
+        <img src="./assets/Urban Grunge Sale Instagram Post.png" alt="Product Image" style="width: 10em; height: 10em;">
+
+        <div class="text-content">
+          <h2>Summer Sale!</h2>
+          <p>Get up to 50% off on all products. Limited time offer.</p>
+          <p>Shop now and stay fit with AZ-FIT!</p>
+        </div>
+        <video src="./assets/comingsoon.mp4" loop muted autoplay style="width: 10em; height: 10em;"></video>
+
+      </div>
+    </div>
+  </div> -->
+
+  <header>
+    <marquee behavior="" direction="left">Welcome to Service Hub - Your trusted service provider ! Offering reliable
+      solutions for all your service needs. 50% OFF on your First Service / <a href="#services"
+        style="text-decoration: none; color: blue !important;">Our Services</a> / Join Us if you are looking for Job /
+      <a href="career.html" style="text-decoration: none; color: blue !important;">Careers</a> / The purpose of a free
+      consultation is to provide a potential client with information regarding the services that we provide. / <a
+        href="#contact" style="text-decoration: none; color: blue !important;">Free Consultation</a> /
+    </marquee>
+
+    <div class="sub-header">
+      <div class="contact-info">
+        <p id="info-head">| Email: <span style="color: rgb(47, 47, 204);">info@serviceshub.com</span></p>
+        <!-- <p>Phone: +123 456 7890</p> -->
+      </div>
+      <div class="social-icons">
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="header">
+      <a href="index.html" style="text-decoration: none; color: black; font-weight: bolder; font-style: italic;">
+        <div class="logo" style="color: white !important;">Services Hub</div>
+      </a>
+      <nav>
+        <a style="color: white !important;" href="#home">Home</a>
+        <a style="color: white !important;" href="#services">Services</a>
+        <a style="color: white !important;" href="#about">About</a>
+        <a style="color: white !important;" href="#contact">Contact</a>
+        <a style="color: white !important;" href="career.html">Careers</a>
+        <a style="color: white !important;" href="dashboard.html">Dashboard</a>
+      </nav>
+      <div class="icons">
+        <a href="#" onclick="showCart()"><i class="fa fa-shopping-cart"></i></a>
+        <span class="cart-count">0</span>
+        <a href="login.html"><i class="fa fa-user"></i></a>
+      </div>
+      <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+    </div>
+
+    <div id="addToCartModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('addToCartModal')">&times;</span>
+        <p>Item added to cart!</p>
+      </div>
+    </div>
+
+    <div id="cartModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('cartModal')">&times;</span>
+        <h2>Cart Items</h2>
+        <ul id="cartItems" class="cart-items"></ul>
+      </div>
+    </div>
+
+
+  </header>
+
+  <!-- Hero Section -->
+  <!-- <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>Welcome to Service Hub</h2>
+            <p>Your trusted partner for comprehensive solutions. Discover tailored services designed to elevate your experience. Join us on a journey of excellence and efficiency, where every service meets your needs with precision and care."</p>
+            <a href="#products" class="btn" style="width: 12em; height: 3em;">Book Your Services</a>
+        </div>
+    </section> -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Welcome to Service Hub</h1>
+        <p>Your trusted partner for comprehensive solutions.</p>
+        <!-- Join us on a journey of excellence and efficiency, where every service meets your needs with precision and care -->
+        <a href="#services" class="btn">Services</a> <span>
+          <button id="join-btn"><a href="career.html"  id="join-btn" style="border: none !important; background-color: transparent !important;">Join Us</a></button>
+
+        </span>
+      </div>
+    </div>
+    <div class="hero-overlay" id="hero-overlay"></div>
+  </section>
+
+
+  <!-- Gallery section -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <h2 class="gallery-title">Our Gallery</h2>
+      <div class="gallery-grid">
+        <!-- Gallery items will be dynamically added here -->
+        <div class="gallery-item">
+          <img src="./pexels-vardarious-3887985.jpg" alt="Gallery Image 1">
+        </div>
+        <div class="gallery-item">
+          <img src="./pexels-cottonbro-4098368.jpg" alt="Gallery Image 2">
+        </div>
+        <div class="gallery-item">
+          <img src="./pexels-ekrulila-3837464.jpg" alt="Gallery Image 3">
+        </div>
+        <div class="gallery-item">
+          <img src="./pexels-kseniachernaya-5691686.jpg" alt="Gallery Image 4">
+        </div>
+        <div class="gallery-item">
+          <img src="./pexels-yankrukov-8867433.jpg" alt="Gallery Image 5">
+        </div>
+        <div class="gallery-item">
+          <img src="./pexels-tima-miroshnichenko-6196239.jpg" alt="Gallery Image 6">
+        </div>
+        <div class="gallery-item">
+          <img src="./pexels-tima-miroshnichenko-6195959.jpg" alt="Gallery Image 7">
+        </div>
+        <div class="gallery-item">
+          <img src="./pexels-pixabay-69934.jpg" alt="Gallery Image 8">
+        </div>
+        <div class="gallery-item">
+          <img src="./pexels-pixabay-38442.jpg" alt="Gallery Image 9">
+        </div>
+        <div class="gallery-item">
+          <img src="./pexels-olly-3771110.jpg" alt="Gallery Image 10">
+        </div>
+        <div class="gallery-item">
+          <img src="./pexels-tima-miroshnichenko-6195125.jpg" alt="Gallery Image 11">
+        </div>
+        <div class="gallery-item">
+          <img src="/pexels-michelangelo-buonarroti-4176609.jpg" alt="Gallery Image 12">
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Product Section -->
+  <section id="services" class="products">
+    <div class="container">
+      <h2>Our Services</h2>
+      <div class="product-list">
+        <!-- Products will be dynamically added here -->
+      </div>
+      <div class="btn-container">
+        <button id="viewMoreBtn" class="btn">View More</button>
+        <button id="viewLessBtn" class="btn" style="display: none;">View Less</button>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- About Section -->
+  <section class="about-section" id="about">
+    <h2>About Us</h2>
+    <div class="card-container">
+      <div class="card">
+        <img src="./pexels-cottonbro-4098368.jpg" alt="Image 1">
+        <div class="overlay">
+          <div class="overlay-content">
+            <h3>About</h3>
+            <p>Learn about our journey as a dedicated team committed to delivering exceptional service solutions, driven
+              by passion and expertise. lore</p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <img src="./pexels-kseniachernaya-5691686.jpg" alt="Image 2">
+        <div class="overlay">
+          <div class="overlay-content">
+            <h3>Our Goals</h3>
+            <p>Discover our ambitious aims to redefine service excellence, aiming to empower businesses with innovative
+              solutions and seamless customer experiences.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <img src="./pexels-tima-miroshnichenko-6196239.jpg" alt="Image 3">
+        <div class="overlay">
+          <div class="overlay-content">
+            <h3>Our Services</h3>
+            <p>Explore our comprehensive suite of services tailored to meet diverse needs, ensuring reliability,
+              efficiency, and growth for every client.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <img src="./pexels-yankrukov-8867433.jpg" alt="Image 4">
+        <div class="overlay">
+          <div class="overlay-content">
+            <h3>Why Trust Us</h3>
+            <p>Find out what sets us apart—our proven track record of reliability, client-centric approach, and
+              commitment to excellence in every service we offer.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <div>
+  </div>
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <p>Email: contact@sh.com</p>
+      <p>Phone: +1234567890</p>
+      <br>
+
+      <form id="contactForm" class="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+        <button type="submit" id="contactBtn" class="btn" style=" width: 12em">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+
+  <!-- // loader animation -->
+
+  <!-- <div class="loader-container" id="loader-container">
+      <div class="loader" id="loader">
+          <div class="brand-name">
+              <span>S</span><span>e</span><span>r</span><span>v</span><span>i</span><span>c</span><span>e</span> <span>H</span><span>u</span><span>b</span>
+          </div>
+      </div>
+  </div> -->
+
+  <!-- loader -->
+  <!-- <div class="loader-container">
+  <div class="loader" id="loader">
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+  </div>
+</div> -->
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2024 Services-Hub. All rights reserved.</p>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <!-- gsap link -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <script src="main.js"></script>
+</body>
+
+</html>
